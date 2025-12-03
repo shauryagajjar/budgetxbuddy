@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { BookOpen, Calculator, TrendingUp, Target, Shield, Lightbulb } from "lucide-react";
 import { motion } from "framer-motion";
+import logo from "@/assets/logo.jpg";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -56,9 +57,9 @@ const Home = () => {
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
             transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
-            className="w-20 h-20 mx-auto mb-6 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center shadow-lg"
+            className="mb-6"
           >
-            <TrendingUp className="w-10 h-10 text-white" />
+            <img src={logo} alt="BudgetBuddy Logo" className="w-40 h-40 mx-auto object-contain" />
           </motion.div>
 
           <h1 className="text-5xl md:text-7xl font-bold text-foreground mb-6">
