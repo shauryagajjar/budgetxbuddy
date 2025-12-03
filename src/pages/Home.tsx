@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { BookOpen, Calculator, TrendingUp, Target, Shield, Lightbulb } from "lucide-react";
 import { motion } from "framer-motion";
-import logo from "@/assets/logo.jpg";
+import logo from "@/assets/logo.png";
 
 const Home = () => {
   const navigate = useNavigate();

@@ -1,6 +1,6 @@
 import { NavLink } from "./NavLink";
 import { BookOpen, Calculator, TrendingUp, FileText, Sparkles, Info } from "lucide-react";
-import logo from "@/assets/logo.jpg";
+import logo from "@/assets/logo.png";
 const Navigation = () => {
   const navItems = [{
     to: "/",
