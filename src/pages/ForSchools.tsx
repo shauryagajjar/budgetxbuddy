@@ -1,10 +1,37 @@
+import { useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { motion } from "framer-motion";
-import { School, BookOpen, Users, Calculator, GraduationCap, ClipboardList } from "lucide-react";
+import { School, BookOpen, Users, Calculator, GraduationCap, ClipboardList, PiggyBank, Wallet, TrendingUp } from "lucide-react";
 
 const ForSchools = () => {
+  // Budget Split Calculator
+  const [totalMoney, setTotalMoney] = useState("");
+  const needs = Number(totalMoney) * 0.5;
+  const wants = Number(totalMoney) * 0.3;
+  const savings = Number(totalMoney) * 0.2;
+
+  // Savings Goal Calculator
+  const [goalAmount, setGoalAmount] = useState("");
+  const [monthlySaving, setMonthlySaving] = useState("");
+  const monthsNeeded = goalAmount && monthlySaving ? Math.ceil(Number(goalAmount) / Number(monthlySaving)) : 0;
+
+  // Pocket Money Planner
+  const [pocketMoney, setPocketMoney] = useState("");
+  const pocketNeeds = Number(pocketMoney) * 0.4;
+  const pocketWants = Number(pocketMoney) * 0.4;
+  const pocketSavings = Number(pocketMoney) * 0.2;
+
+  // Compound Interest
+  const [principal, setPrincipal] = useState("");
+  const [rate, setRate] = useState("");
+  const [years, setYears] = useState("");
+  const compoundTotal = principal && rate && years 
+    ? Math.round(Number(principal) * Math.pow(1 + Number(rate) / 100, Number(years))) 
+    : 0;
   const whoThisIsFor = [
     "Schools wanting practical money education",
     "Teachers needing ready-made notes + diagrams",
@@ -353,8 +380,219 @@ Low   | [ Bank FD / Savings ]
         </div>
       </section>
 
-      {/* How Teachers Can Use FinRoad */}
+      {/* Student Tools Section */}
       <section className="py-16 px-4">
+        <div className="container mx-auto max-w-5xl">
+          <motion.h2 
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
+            className="text-2xl md:text-3xl font-bold text-center mb-4 text-foreground"
+          >
+            Student Tools
+          </motion.h2>
+          <p className="text-center text-muted-foreground mb-10">
+            Interactive calculators students can use in class
+          </p>
+
+          <div className="grid md:grid-cols-2 gap-6">
+            {/* Budget Split Calculator */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1, duration: 0.4 }}
+              viewport={{ once: true }}
+            >
+              <Card className="p-6 h-full border-2">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center">
+                    <Calculator className="w-6 h-6 text-white" />
+                  </div>
+                  <h3 className="text-xl font-bold text-foreground">Budget Split (50-30-20)</h3>
+                </div>
+                <div className="space-y-4">
+                  <div>
+                    <Label>Total Money (₹)</Label>
+                    <Input
+                      type="number"
+                      placeholder="Enter amount"
+                      value={totalMoney}
+                      onChange={(e) => setTotalMoney(e.target.value)}
+                    />
+                  </div>
+                  {totalMoney && (
+                    <div className="space-y-2 p-4 bg-muted/50 rounded-lg">
+                      <div className="flex justify-between">
+                        <span>Needs (50%)</span>
+                        <span className="font-bold text-primary">₹{needs.toFixed(0)}</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span>Wants (30%)</span>
+                        <span className="font-bold text-accent">₹{wants.toFixed(0)}</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span>Savings (20%)</span>
+                        <span className="font-bold text-green-600">₹{savings.toFixed(0)}</span>
+                      </div>
+                    </div>
+                  )}
+                </div>
+                <p className="text-xs text-muted-foreground mt-3 italic">For Education Only</p>
+              </Card>
+            </motion.div>
+
+            {/* Savings Goal Calculator */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2, duration: 0.4 }}
+              viewport={{ once: true }}
+            >
+              <Card className="p-6 h-full border-2">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-green-500 to-emerald-500 flex items-center justify-center">
+                    <PiggyBank className="w-6 h-6 text-white" />
+                  </div>
+                  <h3 className="text-xl font-bold text-foreground">Savings Goal</h3>
+                </div>
+                <div className="space-y-4">
+                  <div>
+                    <Label>Goal Amount (₹)</Label>
+                    <Input
+                      type="number"
+                      placeholder="What do you want to buy?"
+                      value={goalAmount}
+                      onChange={(e) => setGoalAmount(e.target.value)}
+                    />
+                  </div>
+                  <div>
+                    <Label>Monthly Savings (₹)</Label>
+                    <Input
+                      type="number"
+                      placeholder="How much can you save?"
+                      value={monthlySaving}
+                      onChange={(e) => setMonthlySaving(e.target.value)}
+                    />
+                  </div>
+                  {monthsNeeded > 0 && (
+                    <div className="p-4 bg-muted/50 rounded-lg text-center">
+                      <p className="text-sm text-muted-foreground mb-1">You'll reach your goal in</p>
+                      <p className="text-3xl font-bold text-primary">{monthsNeeded} months</p>
+                    </div>
+                  )}
+                </div>
+                <p className="text-xs text-muted-foreground mt-3 italic">For Education Only</p>
+              </Card>
+            </motion.div>
+
+            {/* Pocket Money Planner */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3, duration: 0.4 }}
+              viewport={{ once: true }}
+            >
+              <Card className="p-6 h-full border-2">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center">
+                    <Wallet className="w-6 h-6 text-white" />
+                  </div>
+                  <h3 className="text-xl font-bold text-foreground">Pocket Money Plan</h3>
+                </div>
+                <div className="space-y-4">
+                  <div>
+                    <Label>Monthly Pocket Money (₹)</Label>
+                    <Input
+                      type="number"
+                      placeholder="Enter amount"
+                      value={pocketMoney}
+                      onChange={(e) => setPocketMoney(e.target.value)}
+                    />
+                  </div>
+                  {pocketMoney && (
+                    <div className="space-y-2 p-4 bg-muted/50 rounded-lg">
+                      <div className="flex justify-between">
+                        <span>Needs (40%)</span>
+                        <span className="font-bold text-primary">₹{pocketNeeds.toFixed(0)}</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span>Fun (40%)</span>
+                        <span className="font-bold text-accent">₹{pocketWants.toFixed(0)}</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span>Savings (20%)</span>
+                        <span className="font-bold text-green-600">₹{pocketSavings.toFixed(0)}</span>
+                      </div>
+                    </div>
+                  )}
+                </div>
+                <p className="text-xs text-muted-foreground mt-3 italic">For Education Only</p>
+              </Card>
+            </motion.div>
+
+            {/* Compound Interest */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4, duration: 0.4 }}
+              viewport={{ once: true }}
+            >
+              <Card className="p-6 h-full border-2">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-orange-500 to-red-500 flex items-center justify-center">
+                    <TrendingUp className="w-6 h-6 text-white" />
+                  </div>
+                  <h3 className="text-xl font-bold text-foreground">Compound Interest</h3>
+                </div>
+                <div className="space-y-4">
+                  <div className="grid grid-cols-3 gap-2">
+                    <div>
+                      <Label className="text-xs">Amount (₹)</Label>
+                      <Input
+                        type="number"
+                        placeholder="1000"
+                        value={principal}
+                        onChange={(e) => setPrincipal(e.target.value)}
+                      />
+                    </div>
+                    <div>
+                      <Label className="text-xs">Rate (%)</Label>
+                      <Input
+                        type="number"
+                        placeholder="10"
+                        value={rate}
+                        onChange={(e) => setRate(e.target.value)}
+                      />
+                    </div>
+                    <div>
+                      <Label className="text-xs">Years</Label>
+                      <Input
+                        type="number"
+                        placeholder="5"
+                        value={years}
+                        onChange={(e) => setYears(e.target.value)}
+                      />
+                    </div>
+                  </div>
+                  {compoundTotal > 0 && (
+                    <div className="p-4 bg-muted/50 rounded-lg text-center">
+                      <p className="text-sm text-muted-foreground mb-1">Your money grows to</p>
+                      <p className="text-3xl font-bold text-primary">₹{compoundTotal.toLocaleString()}</p>
+                      <p className="text-sm text-green-600 font-medium mt-1">
+                        Profit: ₹{(compoundTotal - Number(principal)).toLocaleString()}
+                      </p>
+                    </div>
+                  )}
+                </div>
+                <p className="text-xs text-muted-foreground mt-3 italic">For Education Only</p>
+              </Card>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* How Teachers Can Use FinRoad */}
+      <section className="py-16 px-4 bg-muted/30">
         <div className="container mx-auto max-w-3xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
