@@ -1,5 +1,6 @@
 import { NavLink } from "./NavLink";
 import { BookOpen, Calculator, TrendingUp, FileText, Sparkles, Info } from "lucide-react";
+import logo from "@/assets/logo.jpg";
 const Navigation = () => {
   const navItems = [{
     to: "/",
@@ -34,10 +35,7 @@ const Navigation = () => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center gap-2">
-            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center">
-              <TrendingUp className="w-5 h-5 text-primary-foreground" />
-            </div>
-            <span className="font-bold text-xl text-foreground">BudgetBuddy</span>
+            <img src={logo} alt="BudgetBuddy Logo" className="h-12 w-auto" />
           </div>
           
           <div className="hidden md:flex items-center gap-1">
