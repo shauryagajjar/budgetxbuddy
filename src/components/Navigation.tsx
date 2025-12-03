@@ -1,5 +1,5 @@
 import { NavLink } from "./NavLink";
-import { BookOpen, Calculator, TrendingUp, FileText, Sparkles, Info } from "lucide-react";
+import { BookOpen, Calculator, TrendingUp, FileText, Sparkles, Info, School } from "lucide-react";
 import logo from "@/assets/logo.png";
 const Navigation = () => {
   const navItems = [{
@@ -22,6 +22,10 @@ const Navigation = () => {
     to: "/plan",
     label: "Plan",
     icon: FileText
+  }, {
+    to: "/for-schools",
+    label: "For Schools",
+    icon: School
   }, {
     to: "/premium",
     label: "Premium",

@@ -73,7 +73,7 @@ const Home = () => {
             Understand saving, budgeting, interest, and investments in the simplest way.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center flex-wrap">
             <Button 
               size="lg" 
               className="text-lg px-8 py-6 rounded-full bg-gradient-to-r from-primary to-accent hover:opacity-90 transition-opacity shadow-lg"
@@ -93,9 +93,9 @@ const Home = () => {
               size="lg" 
               variant="secondary"
               className="text-lg px-8 py-6 rounded-full"
-              onClick={() => navigate("/premium")}
+              onClick={() => navigate("/for-schools")}
             >
-              Premium (Coming Soon)
+              For Schools (Free School Plan)
             </Button>
           </div>
         </motion.div>

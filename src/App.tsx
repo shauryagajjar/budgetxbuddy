@@ -9,6 +9,7 @@ import Basics from "./pages/Basics";
 import Tools from "./pages/Tools";
 import Simulator from "./pages/Simulator";
 import Plan from "./pages/Plan";
+import ForSchools from "./pages/ForSchools";
 import Premium from "./pages/Premium";
 import About from "./pages/About";
 import NotFound from "./pages/NotFound";
@@ -28,6 +29,7 @@ const App = () => (
           <Route path="/tools" element={<Tools />} />
           <Route path="/simulator" element={<Simulator />} />
           <Route path="/plan" element={<Plan />} />
+          <Route path="/for-schools" element={<ForSchools />} />
           <Route path="/premium" element={<Premium />} />
           <Route path="/about" element={<About />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
