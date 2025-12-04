@@ -1,12 +1,14 @@
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "@/hooks/useAuth";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { BookOpen, Calculator, TrendingUp, Target, Shield, Lightbulb } from "lucide-react";
+import { BookOpen, Calculator, TrendingUp, Target, Shield, Lightbulb, Route, Gamepad2, Briefcase } from "lucide-react";
 import { motion } from "framer-motion";
 import logo from "@/assets/logo.png";
 
 const Home = () => {
   const navigate = useNavigate();
+  const { user } = useAuth();
 
   const features = [
     {
@@ -25,19 +27,19 @@ const Home = () => {
       description: "Practice investing with fake money before using real money"
     },
     {
-      icon: Target,
-      title: "Personal Plans",
-      description: "Get a custom money plan based on your goals and risk level"
+      icon: Route,
+      title: "Learning Paths",
+      description: "Track your progress, earn badges, and see your improvement"
     },
     {
-      icon: Shield,
-      title: "Risk-Free Learning",
-      description: "100% educational. No real money, no pressure, just learning"
+      icon: Gamepad2,
+      title: "Real-World Scenarios",
+      description: "Make decisions in realistic situations and see consequences"
     },
     {
-      icon: Lightbulb,
-      title: "Avoid Mistakes",
-      description: "Learn common money mistakes students make before making them"
+      icon: Briefcase,
+      title: "Career Guidance",
+      description: "Get financial tips tailored to your dream career path"
     }
   ];
 
@@ -59,7 +61,7 @@ const Home = () => {
             transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
             className="mb-6"
           >
-            <img src={logo} alt="BudgetBuddy Logo" className="w-40 h-40 mx-auto object-contain" />
+            <img src={logo} alt="FinRoad Logo" className="w-40 h-40 mx-auto object-contain" />
           </motion.div>
 
           <h1 className="text-5xl md:text-7xl font-bold text-foreground mb-6">
@@ -74,28 +76,50 @@ const Home = () => {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center flex-wrap">
-            <Button 
-              size="lg" 
-              className="text-lg px-8 py-6 rounded-full bg-gradient-to-r from-primary to-accent hover:opacity-90 transition-opacity shadow-lg"
-              onClick={() => navigate("/basics")}
-            >
-              Start Learning
-            </Button>
-            <Button 
-              size="lg" 
-              variant="outline"
-              className="text-lg px-8 py-6 rounded-full border-2"
-              onClick={() => navigate("/simulator")}
-            >
-              Try Simulator
-            </Button>
+            {user ? (
+              <>
+                <Button 
+                  size="lg" 
+                  className="text-lg px-8 py-6 rounded-full bg-gradient-to-r from-primary to-accent hover:opacity-90 transition-opacity shadow-lg"
+                  onClick={() => navigate("/learning-path")}
+                >
+                  Continue Learning
+                </Button>
+                <Button 
+                  size="lg" 
+                  variant="outline"
+                  className="text-lg px-8 py-6 rounded-full border-2"
+                  onClick={() => navigate("/simulations")}
+                >
+                  Try Scenarios
+                </Button>
+              </>
+            ) : (
+              <>
+                <Button 
+                  size="lg" 
+                  className="text-lg px-8 py-6 rounded-full bg-gradient-to-r from-primary to-accent hover:opacity-90 transition-opacity shadow-lg"
+                  onClick={() => navigate("/auth")}
+                >
+                  Get Started Free
+                </Button>
+                <Button 
+                  size="lg" 
+                  variant="outline"
+                  className="text-lg px-8 py-6 rounded-full border-2"
+                  onClick={() => navigate("/basics")}
+                >
+                  Explore Content
+                </Button>
+              </>
+            )}
             <Button 
               size="lg" 
               variant="secondary"
               className="text-lg px-8 py-6 rounded-full"
               onClick={() => navigate("/for-schools")}
             >
-              For Schools (Free School Plan)
+              For Schools (Free)
             </Button>
           </div>
         </motion.div>
@@ -152,14 +176,17 @@ const Home = () => {
               Ready to learn money skills?
             </h2>
             <p className="text-xl text-muted-foreground mb-8">
-              Join thousands of students learning financial literacy the easy way
+              {user 
+                ? "Continue your learning journey and earn more badges!" 
+                : "Create a free account to track progress, earn badges, and get personalized guidance"
+              }
             </p>
             <Button 
               size="lg"
               className="text-lg px-8 py-6 rounded-full bg-gradient-to-r from-primary to-accent hover:opacity-90 transition-opacity"
-              onClick={() => navigate("/basics")}
+              onClick={() => navigate(user ? "/learning-path" : "/auth")}
             >
-              Get Started Free
+              {user ? "Go to My Learning Path" : "Create Free Account"}
             </Button>
           </Card>
         </motion.div>
