@@ -1,5 +1,5 @@
 import { NavLink } from "./NavLink";
-import { BookOpen, Calculator, TrendingUp, FileText, Sparkles, Info, School, Route, Gamepad2, Briefcase } from "lucide-react";
+import { BookOpen, Calculator, TrendingUp, FileText, Sparkles, Info, School, Route, Gamepad2, Briefcase, Rocket } from "lucide-react";
 import logo from "@/assets/logo.png";
 import UserMenu from "./UserMenu";
 
@@ -12,6 +12,7 @@ const Navigation = () => {
     { to: "/learning-path", label: "My Path", icon: Route },
     { to: "/simulations", label: "Scenarios", icon: Gamepad2 },
     { to: "/career-quiz", label: "Career", icon: Briefcase },
+    { to: "/life-game", label: "Life Game", icon: Rocket },
     { to: "/premium", label: "Premium", icon: Sparkles },
     { to: "/for-schools", label: "For Schools", icon: School },
   ];

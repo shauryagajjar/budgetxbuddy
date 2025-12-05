@@ -17,6 +17,7 @@ import Auth from "./pages/Auth";
 import LearningPath from "./pages/LearningPath";
 import Simulations from "./pages/Simulations";
 import CareerQuiz from "./pages/CareerQuiz";
+import LifeMoneyGame from "./pages/LifeMoneyGame";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -39,6 +40,7 @@ const App = () => (
             <Route path="/learning-path" element={<LearningPath />} />
             <Route path="/simulations" element={<Simulations />} />
             <Route path="/career-quiz" element={<CareerQuiz />} />
+            <Route path="/life-game" element={<LifeMoneyGame />} />
             <Route path="/for-schools" element={<ForSchools />} />
             <Route path="/premium" element={<Premium />} />
             <Route path="/about" element={<About />} />
