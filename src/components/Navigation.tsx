@@ -12,6 +12,7 @@ const Navigation = () => {
     { to: "/learning-path", label: "My Path", icon: Route },
     { to: "/simulations", label: "Scenarios", icon: Gamepad2 },
     { to: "/career-quiz", label: "Career", icon: Briefcase },
+    { to: "/premium", label: "Premium", icon: Sparkles },
     { to: "/for-schools", label: "For Schools", icon: School },
   ];
 
