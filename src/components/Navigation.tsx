@@ -9,11 +9,11 @@ const Navigation = () => {
     { to: "/basics", label: "Basics", icon: BookOpen },
     { to: "/tools", label: "Tools", icon: Calculator },
     { to: "/simulator", label: "Simulator", icon: TrendingUp },
+    { to: "/compound-adventure", label: "CI Game", icon: Sparkles },
     { to: "/learning-path", label: "My Path", icon: Route },
     { to: "/simulations", label: "Scenarios", icon: Gamepad2 },
     { to: "/career-quiz", label: "Career", icon: Briefcase },
     { to: "/life-game", label: "Life Game", icon: Rocket },
-    { to: "/premium", label: "Premium", icon: Sparkles },
     { to: "/for-schools", label: "For Schools", icon: School },
   ];
 
